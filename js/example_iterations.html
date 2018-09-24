@@ -6,18 +6,13 @@
     <meta charset="UTF-8">
  </head>
  <body>
-    <h2>20 random sentences</h2>
-    <div><lable>Seed:</lable><input type="text" id="seedval" placeholder="1"><div>
+    <h2>20 random sentences (5 iterations)</h2>
     <textarea cols="80" rows="25" id="clobber"></textarea>
     <h2>Distribution of nouns</h2>
     <canvas id="canv" height="400px" width="697px" style="border:1px solid red"></canvas>    
     <script>
-        document.getElementById('clobber').value="";
         var sentence="";
-        var seed=document.getElementById('seedval').value; 
-        if(seed=="")seed=1;       
-        seed=parseInt(seed);
-        if(typeof(seed)==="NaN")seed=1;
+        var seed=1337;
         var grammar=new ContextFreeGrammar({
                "probabilityNounPhrase":0.5,
                "probabilityVerbPhrase":0.5,
@@ -32,11 +27,10 @@
                "distributionOfModals":"uni-squared",
                "randomSeed":seed
              });
-
+        document.getElementById('clobber').value="";
         for(var i=0;i<20;i++){
             sentence=grammar.generateSentence();document.getElementById('clobber').value+=sentence;
         }
-        console.log(grammar);
         var canvas1=document.getElementById("canv");
         var context1=canvas1.getContext("2d");
         var std_rnd=new RandApp({"seed":seed,"distribution":"normal"});   
@@ -46,10 +40,8 @@
             var nounArr=[]
             for(let i=0;i<50000;i++){
               let x=Math.floor(std_rnd.rand()*697)+1;       
-              //console.log(x,nounArr[x],typeof(nounArr[x])) 
               if(typeof(nounArr[x])!=="number") nounArr[x]=1;               
               nounArr[x]=nounArr[x]+1;         
-              //console.log(x,nounArr[x])
             }
 
             for(let j=0;j<697;j++){
@@ -63,7 +55,20 @@
                 }
             }
         }
+        var iterations=parseInt(window.localStorage.getItem("ContextFreeGrammarExample"),10);
+        if(iterations!==parseInt(iterations,10)){
+            iterations=1;
+        }else{
+            iterations++;
+        }
+        alert(iterations);
+        if(iterations<5){
+            window.localStorage.setItem("ContextFreeGrammarExample",iterations);
+            location.reload();
+        }else{
+            window.localStorage.removeItem("ContextFreeGrammarExample");
+            grammar.clearSeeds();
+        }
 
-        console.log(nounArr);
     </script>
- </body>
+</body>

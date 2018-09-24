@@ -94,10 +94,10 @@ var ContextFreeGrammar=function(params)
 
     // Returns a random integer between min (included) and max (excluded)
     // Using Math.round() will give you a non-uniform distribution!
-    var rndm_std=new RandApp({"seed":seed,"distribution":"normal"});
-    var rndm_unisqr=new RandApp({"seed":seed,"distribution":"uni-squared"});
-    var rndm_chi=new RandApp({"seed":seed,"distribution":"chi-squared"});
-    var rndm_uni=new RandApp({"seed":seed,"distribution":"uniform"});
+    var rndm_std=new RandApp({"seed":seed,"distribution":"normal","persistentSeed":false});
+    var rndm_unisqr=new RandApp({"seed":seed,"distribution":"uni-squared","persistentSeed":false});
+    var rndm_chi=new RandApp({"seed":seed,"distribution":"chi-squared","persistentSeed":false});
+    var rndm_uni=new RandApp({"seed":seed,"distribution":"uniform","persistentSeed":false});
     /*
     function getRandomInt(min, max, distribution) {
         return rndm.randIntFromIntervall(min,max);
@@ -338,7 +338,12 @@ var ContextFreeGrammar=function(params)
     	// remove double spaces
     	sentence = sentence.replace(/  /g, " ");
 
-    	return sentence.charAt(0).toUpperCase() + sentence.slice(1) + ". ";
-    				
+    	return sentence.charAt(0).toUpperCase() + sentence.slice(1) + ". ";    				
+    }
+    this.clearSeeds=function(){
+        rndm_std.clearSeed();
+        rndm_unisqr.clearSeed();
+        rndm_chi.clearSeed();
+        rndm_uni.clearSeed();
     }
 }
