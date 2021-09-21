@@ -95,8 +95,8 @@ var ContextFreeGrammar=function(params)
     // Returns a random integer between min (included) and max (excluded)
     // Using Math.round() will give you a non-uniform distribution!
     var rndm_std=new RandApp({"seed":seed,"distribution":"normal","persistentSeed":true});
-    var rndm_unisqr=new RandApp({"seed":seed,"distribution":"uni-squared","persistentSeed":false});
-    var rndm_chi=new RandApp({"seed":seed,"distribution":"chi-squared","persistentSeed":false});
+    var rndm_unisqr=new RandApp({"seed":seed,"distribution":"uni-squared","persistentSeed":true});
+    var rndm_chi=new RandApp({"seed":seed,"distribution":"chi-squared","persistentSeed":true});
     var rndm_uni=new RandApp({"seed":seed,"distribution":"uniform","persistentSeed":true});
     /*
     function getRandomInt(min, max, distribution) {
