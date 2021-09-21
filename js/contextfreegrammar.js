@@ -136,12 +136,12 @@ var ContextFreeGrammar=function(params)
     function randomword(list,distribution){
         if(distribution=="normal"){
             return list[rndm_std.randIntFromIntervall(0,list.length)];          
-        }else if(distribution=="uniform"){
+        /* }else if(distribution=="uniform"){
             return list[rndm_uni.randIntFromIntervall(0,list.length)];        
         }else if(distribution=="chi-squared"){
             return list[rndm_chi.randIntFromIntervall(0,list.length)];        
         }else if(distribution=="uni-squared"){
-            return list[rndm_unisqr.randIntFromIntervall(0,list.length)];        
+            return list[rndm_unisqr.randIntFromIntervall(0,list.length)];  */       
         }else{
             alert("Unknown distribution function: "+distribution);
         }
