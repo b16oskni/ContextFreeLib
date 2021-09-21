@@ -95,9 +95,9 @@ var ContextFreeGrammar=function(params)
     // Returns a random integer between min (included) and max (excluded)
     // Using Math.round() will give you a non-uniform distribution!
     var rndm_std=new RandApp({"seed":seed,"distribution":"normal","persistentSeed":true});
-    /* var rndm_unisqr=new RandApp({"seed":seed,"distribution":"uni-squared","persistentSeed":false});
+    var rndm_unisqr=new RandApp({"seed":seed,"distribution":"uni-squared","persistentSeed":false});
     var rndm_chi=new RandApp({"seed":seed,"distribution":"chi-squared","persistentSeed":false});
-    var rndm_uni=new RandApp({"seed":seed,"distribution":"uniform","persistentSeed":false}); */
+    var rndm_uni=new RandApp({"seed":seed,"distribution":"uniform","persistentSeed":true});
     /*
     function getRandomInt(min, max, distribution) {
         return rndm.randIntFromIntervall(min,max);
@@ -136,12 +136,12 @@ var ContextFreeGrammar=function(params)
     function randomword(list,distribution){
         if(distribution=="normal"){
             return list[rndm_std.randIntFromIntervall(0,list.length)];          
-        /* }else if(distribution=="uniform"){
+        }else if(distribution=="uniform"){
             return list[rndm_uni.randIntFromIntervall(0,list.length)];        
         }else if(distribution=="chi-squared"){
             return list[rndm_chi.randIntFromIntervall(0,list.length)];        
         }else if(distribution=="uni-squared"){
-            return list[rndm_unisqr.randIntFromIntervall(0,list.length)];  */       
+            return list[rndm_unisqr.randIntFromIntervall(0,list.length)];        
         }else{
             alert("Unknown distribution function: "+distribution);
         }
